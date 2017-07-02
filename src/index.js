@@ -5,6 +5,9 @@ import store from './store';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
+import { loadPlayers } from './modules/players';
+
+store.dispatch(loadPlayers());
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import PlayersAutocomplete from '../players-autocomplete';
 
 class ResultsForm extends Component {
   render() {
     return (
       <div>
-        <label>Player 1</label>
-        <input type="text" value="" placeholder="Name of player 1" />
+        <div>
+          <h2>Players</h2>
+          <ul>
+            {this.props.selectedPlayers.map((player) => {
+              return <li key={player.id}>{player.name}</li>
+            })}
+          </ul>
+          <PlayersAutocomplete />
+        </div>
       </div>
     );
   }

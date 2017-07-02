@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ResultsForm from './ResultsForm.js'
+import ResultsForm from './ResultsForm'
 
 class ResultsFormContainer extends Component {
   render() {
     return (
-      <ResultsForm />
+      <ResultsForm 
+        selectedPlayers={this.props.selectedPlayers}
+      />
     );
   }
 }
 
-export default connect()(ResultsFormContainer);
+const mapStateToProps = (state) => {
+  return {
+    selectedPlayers: state.results.selectedPlayers.map((selectedPlayer) => {
+      return {
+        ...state.players.players.find(p => p.id === selectedPlayer.id),
+        ...selectedPlayer
+      }
+    })
+  };
+};
+
+
+export default connect(mapStateToProps)(ResultsFormContainer);
